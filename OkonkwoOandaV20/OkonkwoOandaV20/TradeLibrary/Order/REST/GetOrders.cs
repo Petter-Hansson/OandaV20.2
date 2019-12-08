@@ -22,7 +22,7 @@ namespace OkonkwoOandaV20.TradeLibrary.REST
          string uri = ServerUri(EServer.Account) + "accounts/" + accountID + "/orders";
 
          var requestParams = ConvertToDictionary(parameters);
-         if (parameters?.ids?.Count > 0)
+         if (parameters != null && parameters.ids != null && parameters.ids.Count > 0)
             requestParams.Add("ids", GetCommaSeparatedString(parameters.ids));
 
          var response = await MakeRequestAsync<OrdersResponse, OrdersErrorResponse>(uri, "GET", requestParams);

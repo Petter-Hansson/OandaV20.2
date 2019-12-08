@@ -20,7 +20,7 @@ namespace OkonkwoOandaV20.TradeLibrary.REST
       {
          string uri = ServerUri(EServer.Account) + "accounts/" + accountID + "/instruments";
 
-         if (parameters?.instruments?.Count > 0)
+         if (parameters != null && parameters.instruments != null && parameters.instruments.Count > 0)
          {
             string commaSeparatedInstruments = GetCommaSeparatedString(parameters.instruments);
             uri += "?instruments=" + Uri.EscapeDataString(commaSeparatedInstruments);

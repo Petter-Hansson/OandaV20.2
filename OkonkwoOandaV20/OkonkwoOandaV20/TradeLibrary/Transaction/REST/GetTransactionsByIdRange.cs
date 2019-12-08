@@ -31,7 +31,7 @@ namespace OkonkwoOandaV20.TradeLibrary.REST
             uri = ServerUri(EServer.Account) + "accounts/" + accountID + "/transactions/idrange";
 
             var requestParams = ConvertToDictionary(parameters);
-            if (parameters.type?.Count > 0)
+            if (parameters != null && parameters.type != null && parameters.type.Count > 0)
                requestParams.Add("type", GetCommaSeparatedString(parameters.type));
 
             response = await MakeRequestAsync<TransactionsByIdRangeResponse, TransactionsByIdRangeErrorResponse>(uri, "GET", requestParams);

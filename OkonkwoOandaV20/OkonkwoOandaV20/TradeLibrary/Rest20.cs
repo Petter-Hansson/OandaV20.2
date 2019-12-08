@@ -67,7 +67,7 @@ namespace OkonkwoOandaV20.TradeLibrary.REST
       private static async Task<T> MakeRequestAsync<T, E>(string uri, string method = "GET", Dictionary<string, string> requestParams = null)
          where E : IErrorResponse
       {
-         if (requestParams?.Count > 0)
+         if (requestParams != null && requestParams.Count > 0)
          {
             var queryString = CreateQueryString(requestParams);
             uri = uri + "?" + queryString;
@@ -142,7 +142,7 @@ namespace OkonkwoOandaV20.TradeLibrary.REST
                return result;
             }
          }
-         catch (WebException ex)
+         catch (WebException ex) when (ex.Response != null)
          {
             var stream = GetResponseStream(ex.Response);
             var reader = new StreamReader(stream);
